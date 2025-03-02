@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_freezed/bloc/post_event.dart';
 
 import '../bloc/post_bloc.dart';
 import '../bloc/post_state.dart';
@@ -40,6 +41,9 @@ class PostScreen extends StatelessWidget {
           }
         },
       ),
+      floatingActionButton: FloatingActionButton(onPressed: () {
+        context.read<PostBloc>().add(FetchPosts());
+      }),
     );
   }
 }

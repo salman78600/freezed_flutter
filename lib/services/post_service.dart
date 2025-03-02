@@ -1,13 +1,12 @@
-import 'package:dio/dio.dart';
 import 'package:flutter_freezed/core/contants.dart';
 import 'package:flutter_freezed/model/post_model.dart';
+import 'package:flutter_freezed/services/dioService.dart';
 
 class PostService {
-  final Dio _dio = Dio();
-
   Future<List<PostModel>> fetchPosts() async {
     try {
-      final response = await _dio.get('$baseURL/posts');
+      DioService dioService = DioService.instance;
+      final response = await dioService.dio.get('$baseURL/posts');
       return (response.data as List)
           .map((json) => PostModel.fromJson(json))
           .toList();
